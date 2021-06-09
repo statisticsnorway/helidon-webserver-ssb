@@ -59,7 +59,7 @@ import static org.junit.jupiter.api.Assertions.fail;
  */
 public class BytesReuseTest {
 
-    private static final Logger LOGGER = Logger.getLogger(PlainTest.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(BytesReuseTest.class.getName());
 
     private static WebServer webServer;
 

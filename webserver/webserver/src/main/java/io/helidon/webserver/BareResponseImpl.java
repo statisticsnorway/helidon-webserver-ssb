@@ -330,7 +330,7 @@ class BareResponseImpl implements BareResponse {
     @Override
     public void onSubscribe(Flow.Subscription subscription) {
         this.subscription = subscription;
-        subscription.request(Long.MAX_VALUE);
+        subscription.request(2);
     }
 
     @Override
@@ -440,6 +440,7 @@ class BareResponseImpl implements BareResponse {
                         }
                     });
                     data.release();
+                    subscription.request(1);
                     LOGGER.finest(() -> log("Data chunk sent with result: %s", future.isSuccess()));
                 })
                 .addListener(completeOnFailureListener("Failure when sending a content!"))
