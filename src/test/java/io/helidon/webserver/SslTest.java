@@ -28,6 +28,7 @@ import io.helidon.webclient.WebClientRequestBuilder;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -69,6 +70,7 @@ public class SslTest {
     }
 
     @Test
+    @Disabled
     public void testSecuredServerWithJerseyClient() throws Exception {
 
         client.get()
