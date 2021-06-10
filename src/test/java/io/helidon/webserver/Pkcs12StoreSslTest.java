@@ -25,7 +25,6 @@ import io.helidon.webclient.WebClient;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Disabled;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -47,7 +46,6 @@ public class Pkcs12StoreSslTest {
     }
 
     @Test
-    @Disabled
     public void testPkcs12() throws Exception {
         WebServer otherWebServer =
                 WebServer.builder(Routing.builder()

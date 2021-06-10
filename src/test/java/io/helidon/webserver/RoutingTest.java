@@ -23,6 +23,7 @@ import io.helidon.common.context.Context;
 import io.helidon.common.http.Http;
 import io.helidon.common.reactive.Single;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -36,6 +37,8 @@ import static org.mockito.Mockito.when;
 /**
  * Tests {@link Routing#route(BareRequest, BareResponse)}.
  */
+
+@Disabled
 public class RoutingTest {
 
     @Test

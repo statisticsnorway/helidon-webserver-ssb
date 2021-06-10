@@ -423,15 +423,13 @@ public class ForwardingHandler extends SimpleChannelInboundHandler<Object> {
     }
 
     /**
-     * Returns a 400 (Bad Request) response with a message as content. Message is encoded using
-     * HTML entities to prevent potential XSS attacks even if content type is text/plain.
+     * Returns a 400 (Bad Request) response with a message as content.
      *
      * @param ctx Channel context.
      * @param message The message.
      */
     private void send400BadRequest(ChannelHandlerContext ctx, String message) {
-        String encoded = HtmlEncoder.encode(message);
-        byte[] entity = encoded.getBytes(StandardCharsets.UTF_8);
+        byte[] entity = message.getBytes(StandardCharsets.UTF_8);
         FullHttpResponse response = new DefaultFullHttpResponse(HTTP_1_1, BAD_REQUEST, Unpooled.wrappedBuffer(entity));
         response.headers().add(HttpHeaderNames.CONTENT_TYPE, "text/plain");
         response.headers().add(HttpHeaderNames.CONTENT_LENGTH, entity.length);

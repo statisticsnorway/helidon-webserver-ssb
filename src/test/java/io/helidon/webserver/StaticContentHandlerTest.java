@@ -29,6 +29,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import io.helidon.common.http.Http;
 import io.helidon.common.http.MediaType;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -43,6 +44,8 @@ import static org.mockito.Mockito.when;
 /**
  * Tests {@link StaticContentHandler}.
  */
+
+@Disabled
 public class StaticContentHandlerTest {
 
     private static void assertHttpException(Runnable runnable, Http.Status status) {

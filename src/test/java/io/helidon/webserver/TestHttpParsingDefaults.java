@@ -27,11 +27,12 @@ import io.helidon.webclient.WebClientResponse;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-
+@Disabled
 class TestHttpParsingDefaults {
     static final String GOOD_HEADER_NAME = "X_HEADER";
     static final String BAD_HEADER_NAME = "X\tHEADER";

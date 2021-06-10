@@ -50,9 +50,10 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
+@Disabled
 public class UnstableTempTest {
 
     private static final Logger LOGGER = Logger.getLogger(UnstableTempTest.class.getName());

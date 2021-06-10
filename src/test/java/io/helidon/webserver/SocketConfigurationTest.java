@@ -25,13 +25,14 @@ import io.helidon.config.ConfigSources;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static io.helidon.config.testing.OptionalMatcher.present;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
-
+@Disabled
 public class SocketConfigurationTest {
     private static final String ERROR_PREFIX = "Config multiport/application.yaml ";
     private static Config deprecated;

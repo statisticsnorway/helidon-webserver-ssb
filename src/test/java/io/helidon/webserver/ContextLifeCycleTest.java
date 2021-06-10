@@ -28,6 +28,7 @@ import io.helidon.common.http.DataChunk;
 import io.helidon.common.http.Http.ResponseStatus;
 import io.helidon.webclient.WebClient;
 import io.helidon.webclient.WebClientResponse;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -37,6 +38,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * Tests that {@link ServerRequest#context()} is returned by {@link Contexts#context()} throughout the request
  * life-cycle.
  */
+
+@Disabled
 class ContextLifeCycleTest {
 
     private static String contextId() {

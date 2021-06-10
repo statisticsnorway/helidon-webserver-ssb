@@ -37,11 +37,9 @@ import static org.junit.jupiter.api.Assertions.fail;
 import io.netty.buffer.ByteBuf;
 import io.netty.util.ResourceLeakDetector;
 import io.netty.util.internal.StringUtil;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
+@Disabled
 public class DataChunkReleaseTest {
 
     static Logger dataChunkLogger = Logger.getLogger(ByteBufRequestChunk.class.getName());

@@ -31,7 +31,6 @@ import io.helidon.webclient.WebClientResponse;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Disabled;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
@@ -117,7 +116,6 @@ public class MaxPayloadSizeTest {
      * payload in this case.
      */
     @Test
-    @Disabled
     public void testContentLengthExceeded() {
         WebClientRequestBuilder builder = webClient.post();
         builder.headers().add("Content-Length", "512");        // over max
@@ -132,7 +130,6 @@ public class MaxPayloadSizeTest {
      * If content length is greater than max, a 413 must be returned.
      */
     @Test
-    @Disabled
     public void testContentLengthExceededWithPayload() {
         WebClientRequestBuilder builder = webClient.post();
         WebClientResponse response = builder.path("/maxpayload")
@@ -147,7 +144,6 @@ public class MaxPayloadSizeTest {
      * must be returned.
      */
     @Test
-    @Disabled
     public void testActualLengthExceededWithPayload() {
         WebClientRequestBuilder builder = webClient.post();
         WebClientResponse response = builder.path("/maxpayload")
@@ -161,7 +157,6 @@ public class MaxPayloadSizeTest {
      * Tests mixed requests, some that exceed limits, others that do not.
      */
     @Test
-    @Disabled
     public void testMixedGoodAndBadPayloads() {
         WebClientRequestBuilder builder = webClient.post();
         WebClientResponse response = builder.path("/maxpayload")
