@@ -172,7 +172,7 @@ class BareResponseImpl implements BareResponse {
             boolean lengthSet = HttpUtil.isContentLengthSet(response);
             if (!lengthSet) {
                 lengthOptimization = status.code() == Http.Status.OK_200.code()
-                        && !HttpUtil.isTransferEncodingChunked(response);
+                        && !HttpUtil.isTransferEncodingChunked(response) && !isSseEventStream(headers);
                 HttpUtil.setTransferEncodingChunked(response, true);
             }
         }
@@ -194,6 +194,10 @@ class BareResponseImpl implements BareResponse {
     private boolean isWebSocketUpgrade(Http.ResponseStatus status, Map<String, List<String>> headers) {
         return status.code() == 101 && headers.containsKey("Upgrade")
                 && headers.get("Upgrade").contains("websocket");
+    }
+
+    private boolean isSseEventStream(Map<String, List<String>> headers) {
+        return headers.containsKey("Content-Type") && headers.get("Content-Type").contains("text/event-stream");
     }
 
     /**
@@ -330,7 +334,7 @@ class BareResponseImpl implements BareResponse {
     @Override
     public void onSubscribe(Flow.Subscription subscription) {
         this.subscription = subscription;
-        subscription.request(2);
+        subscription.request(2); // Because first chunk gets cached
     }
 
     @Override
@@ -341,10 +345,11 @@ class BareResponseImpl implements BareResponse {
         if (data != null) {
             if (data.isFlushChunk()) {
                 if (prevRequestChunk == null) {
-                   ctx.flush();
+                    ctx.flush();
                 } else {
-                   prevRequestChunk = prevRequestChunk.thenRun(ctx::flush);
+                    prevRequestChunk = prevRequestChunk.thenRun(ctx::flush);
                 }
+                subscription.request(1);
                 return;
             }
 
@@ -427,6 +432,7 @@ class BareResponseImpl implements BareResponse {
             channelFuture = ctx.writeAndFlush(httpContent);
         } else {
             channelFuture = ctx.write(httpContent);
+            subscription.request(1);
         }
 
         return channelFuture
@@ -440,7 +446,9 @@ class BareResponseImpl implements BareResponse {
                         }
                     });
                     data.release();
-                    subscription.request(1);
+                    if (data.flush()) {
+                        subscription.request(1);
+                    }
                     LOGGER.finest(() -> log("Data chunk sent with result: %s", future.isSuccess()));
                 })
                 .addListener(completeOnFailureListener("Failure when sending a content!"))
