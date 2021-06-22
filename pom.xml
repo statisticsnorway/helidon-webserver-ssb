@@ -24,7 +24,7 @@
 
     <groupId>io.helidon.webserver</groupId>
     <artifactId>helidon-webserver-ssb</artifactId>
-    <version>2.3.1</version>
+    <version>2.3.2-SNAPSHOT</version>
     <name>Helidon WebServer SSB</name>
 
     <properties>
